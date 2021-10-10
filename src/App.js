@@ -20,12 +20,15 @@ const App = () => {
 
   const [isCross, setIsCross] = useState(false);
   const [winMessage, setWinMessage] = useState("");
+  const [draw, setDraw] = useState("");
 
  //reset everything 
   const reloadGame = () => {
     setIsCross(false);
     setWinMessage("");
+    setDraw("");
     itemArray.fill("empty", 0, 9);
+    
   };
 
   const checkIsWinner = () => {
@@ -79,6 +82,11 @@ const App = () => {
       setWinMessage(`${itemArray[2]} won`);
     }
   };
+  const isDraw = () =>{
+    if(!itemArray.includes("empty") && !winMessage){
+      setDraw("it's a draw");
+    }
+  }
  //change icon (set state and array)
   const changeItem = itemNumber => {
 
@@ -86,6 +94,9 @@ const App = () => {
 
       return toast(winMessage, {type:"success"})
 
+    }
+    if(draw){
+      return toast(draw, {type:"warning"})
     }
     if(itemArray[itemNumber] === "empty"){
 
@@ -95,8 +106,11 @@ const App = () => {
     }else{
 
       return toast("already filled", {type: "error"})
+
     }
     checkIsWinner();
+    isDraw();
+    
   };
 
   return (
@@ -104,10 +118,10 @@ const App = () => {
       <ToastContainer position="bottom-center" />
       <Row>
         <Col md={6} className="offset-md-3">
-        {winMessage ? (
+        {winMessage || draw ? (
           <div className="mb-2 mt-2">
               <h1 className="text-white text-uppercase text-center">
-                {winMessage}
+                {winMessage}{draw}
               </h1>
            <div className="d-grid gap-2">
                 <Button
