@@ -26,7 +26,7 @@ const App = () => {
   const reloadGame = () => {
     setIsCross(false);
     setWinMessage("");
-    setDraw("");
+     setDraw("");
     itemArray.fill("empty", 0, 9);
     
   };
@@ -83,9 +83,15 @@ const App = () => {
     }
   };
   const isDraw = () =>{
-    if(!itemArray.includes("empty") && !winMessage){
+
+    if(!winMessage){
+    
+    if(!itemArray.includes("empty")){
       setDraw("it's a draw");
     }
+
+  }
+
   }
  //change icon (set state and array)
   const changeItem = itemNumber => {
@@ -109,7 +115,7 @@ const App = () => {
 
     }
     checkIsWinner();
-    isDraw();
+     isDraw();
     
   };
 
