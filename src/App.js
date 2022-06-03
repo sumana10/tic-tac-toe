@@ -134,7 +134,7 @@ const App = () => {
         {winMessage ? (
           <div className="mb-2 mt-2">
               <h1 className="text-white text-uppercase text-center">
-                {winMessage}{draw}
+                {winMessage}
               </h1>
            <div className="d-grid gap-2">
                 <Button
