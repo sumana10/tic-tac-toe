@@ -84,9 +84,10 @@ const App = () => {
   };
   const isDraw = () =>{
 
-    if(!winMessage){
+    if(winMessage === ""){//if winmessage false //blank is false //data is true
     
-    if(!itemArray.includes("empty")){
+    if(!itemArray.includes("empty")){//initially true
+      
       setDraw("it's a draw");
     }
 
