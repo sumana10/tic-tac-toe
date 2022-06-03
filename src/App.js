@@ -116,7 +116,7 @@ const App = () => {
 
     }
     checkIsWinner();
-     isDraw();
+    //  isDraw();
     
   };
 
@@ -125,10 +125,10 @@ const App = () => {
       <ToastContainer position="bottom-center" />
       <Row>
         <Col md={6} className="offset-md-3">
-        {winMessage || draw ? (
+        {winMessage ? (
           <div className="mb-2 mt-2">
               <h1 className="text-white text-uppercase text-center">
-                {winMessage}{draw}
+                {winMessage}
               </h1>
            <div className="d-grid gap-2">
                 <Button
