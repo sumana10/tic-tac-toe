@@ -19,14 +19,14 @@ const itemArray = new Array(9).fill("empty");
 const App = () => {
 
   const [isCross, setIsCross] = useState(false);
-  const [winMessage, setWinMessage] = useState("");
-  const [draw, setDraw] = useState("");
+  const [winMessage, setWinMessage] = useState('');
+  const [draw, setDraw] = useState('');
 
  //reset everything 
   const reloadGame = () => {
     setIsCross(false);
-    setWinMessage("");
-     setDraw("");
+    setWinMessage('');
+     setDraw('');
     itemArray.fill("empty", 0, 9);
     
   };
@@ -82,18 +82,7 @@ const App = () => {
       setWinMessage(`${itemArray[2]} won`);
     }
   };
-  const isDraw = () =>{
-
-    if(winMessage === ""){//if winmessage false //blank is false //data is true
-    
-    if(!itemArray.includes("empty")){//initially true
-      
-      setDraw("it's a draw");
-    }
-
-  }
-
-  }
+  
  //change icon (set state and array)
   const changeItem = itemNumber => {
 
@@ -116,9 +105,26 @@ const App = () => {
 
     }
     checkIsWinner();
-    //  isDraw();
+    if(typeof winMessage === 'string' && winMessage.trim().length === 0)
+     isDraw();
     
   };
+  const isDraw = () =>{
+    
+    console.log(winMessage);
+
+    if(typeof winMessage === 'string' && winMessage.trim().length === 0){//if winmessage false //blank is false //data is true
+   
+    console.log(winMessage);
+    
+    if(!itemArray.includes("empty")){//initially true
+      
+      setDraw("it's a draw");
+    }
+
+  }
+
+  }
 
   return (
     <Container className="p-5">
@@ -128,7 +134,7 @@ const App = () => {
         {winMessage ? (
           <div className="mb-2 mt-2">
               <h1 className="text-white text-uppercase text-center">
-                {winMessage}
+                {winMessage}{draw}
               </h1>
            <div className="d-grid gap-2">
                 <Button
@@ -139,14 +145,30 @@ const App = () => {
                 </Button>
            </div>
           </div>
-        ) : (
+        ) : ( draw ? (
+
+          <div className="mb-2 mt-2">
+              <h1 className="text-white text-uppercase text-center">
+                {draw}
+              </h1>
+           <div className="d-grid gap-2">
+                <Button
+                  color="light"
+                  size="lg"  onClick={reloadGame}
+                  block>
+                Reload the game
+                </Button>
+           </div>
+          </div>
+
+        ):(
           <h1 className="text-center text-white">
             {isCross ? "Cross": "Circle"} turns
           </h1>
-        )}
+        ))}
           <div className="grid">
             {itemArray.map((item, index) => (
-              <Card color="info" onClick={() => changeItem(index)}>
+              <Card key={index} color="info" onClick={() => changeItem(index)}>
                 <CardBody className="box">
                   <Icon name={item} />
                 </CardBody>
