@@ -1,5 +1,7 @@
 body {
-  background-color: #dd15e477;
+  
+  background-color: #e583e8; 
+  
 }
 
 .grid {
@@ -14,6 +16,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .icons {
   font-size: 35px;
@@ -21,4 +24,10 @@ body {
 }
 h1{
   color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.Toastify__toast--success {
+  border-radius: 2px !important;
+  background-color: rgb(13, 202, 240);
 }

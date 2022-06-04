@@ -26,7 +26,7 @@ const App = () => {
   const reloadGame = () => {
     setIsCross(false);
     setWinMessage('');
-     setDraw('');
+    setDraw('');
     itemArray.fill("empty", 0, 9);
     
   };
@@ -86,7 +86,9 @@ const App = () => {
  //change icon (set state and array)
   const changeItem = itemNumber => {
 
-    if(winMessage){
+    
+
+    if(winMessage.length !== 0){
 
       return toast(winMessage, {type:"success"})
 
@@ -104,9 +106,11 @@ const App = () => {
       return toast("already filled", {type: "error"})
 
     }
+
     checkIsWinner();
     if(typeof winMessage === 'string' && winMessage.trim().length === 0)
      isDraw();
+    
     
   };
   const isDraw = () =>{
@@ -128,7 +132,7 @@ const App = () => {
 
   return (
     <Container className="p-5">
-      <ToastContainer position="bottom-center" />
+      <ToastContainer position="bottom-center"/>
       <Row>
         <Col md={6} className="offset-md-3">
         {winMessage ? (
